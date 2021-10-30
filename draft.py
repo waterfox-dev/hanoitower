@@ -1,8 +1,7 @@
-def last_elt(liste : list, caractere : str):
-    for i in range(1, len(liste)):
-        if liste[-i] == caractere :            
-            return -i
-    if liste[0] == 'x' :
-        return 0
+def hanoi(n,a=1,b=2,c=3):
+    if (n > 0):
+        hanoi(n-1,a,c,b)
+        print("Déplace ",a,"sur",c)
+        hanoi(n-1,b,a,c)
 
-print(last_elt(['x', '------', '--'], 'x'))
+hanoi(3)

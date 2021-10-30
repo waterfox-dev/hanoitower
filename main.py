@@ -22,20 +22,14 @@ def deplacer(a : int, b : list, c : list):
         print(pos, a, b, c, e)
 
 
-def hanoi(n, origine = 1, destination = 2, pivot = 3):
-    last_config = list(dico_coups.keys())[-1]
-    if n == 1 :
-        # print(f"Disk 1 from {origine} to {destination}")
-        deplacer(0, dico_coups[last_config][origine-1], dico_coups[last_config][destination-1])
-        return None
+def hanoi(disque, source = 1, destination = 2, pivot = 3):
+    if disque == 0 :
+        print(f"Déplacer le disque {disque} de {source} vers {destination}")
     else :
-
-        hanoi(n-1, origine, pivot, destination)
-        deplacer(n-1, dico_coups[last_config][origine-1], dico_coups[last_config][destination-1])
-
-        # print(f"Disk {n} from {origine} to {destination}")       
-        hanoi(n-1, pivot, destination, origine)  
-
+        hanoi(disque-1, source, pivot, destination)
+        print(f"Déplacer le disque {disque} de {source} vers {destination}")
+        hanoi(disque-1, pivot, destination, source)
+            
 if __name__ == "__main__":
     n = int(input('saisir le nombre de tours : '))
     dico_coups = initialisation()
