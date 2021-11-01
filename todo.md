@@ -2,5 +2,5 @@
 - [x] Faire la fonction *last_elt*
 - [x] Faire la fonction *deplacer*
 - [ ] Faire la fonction *hanoi*
-- [ ] Ajouter les tours dans le dictionnaires
+- [ ] Ajouter le système de tours dans le dictionnaire
 - [ ] Faire l'interface graphique
