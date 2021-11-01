@@ -17,6 +17,7 @@ def last_elt(piquet : list, caractere = 'x'):
     if piquet[0] == caractere : #On traite le premier élement du piquet
         return 0
 
+<<<<<<< HEAD
 def deplacer(disque : int, origine : int, destination : int):
     if origine not in [1,2,3] and destination not in [1,2,3]: #Vérificaiton de l'existence de la tour
         raise IndexError("This tower don't exist")
@@ -43,6 +44,28 @@ def hanoi(n, i=1, j=2, k=3):
 
 # Programme principal :
 if __name__ == "__main__":  
+=======
+def deplacer(a : int, b : list, c : list):
+    try :
+        temp = b[a]
+        b[a] = 'x'
+        pos = last_elt(c, 'x')
+        c[pos] = temp
+        print(dico_coups)
+    except Exception as e :
+        print(pos, a, b, c, e)
+
+
+def hanoi(disque, source = 1, destination = 2, pivot = 3):
+    if disque == 0 :
+        print(f"Déplacer le disque {disque} de {source} vers {destination}")
+    else :
+        hanoi(disque-1, source, pivot, destination)
+        print(f"Déplacer le disque {disque} de {source} vers {destination}")
+        hanoi(disque-1, pivot, destination, source)
+            
+if __name__ == "__main__":
+>>>>>>> 22c950218f70e04c523a0e3a4f02fd5ebab954d3
     n = int(input('saisir le nombre de tours : '))
     dico_coups = initialisation(3)
     hanoi(n)
