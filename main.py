@@ -1,44 +1,48 @@
-def initialisation() :
-    return {
-        0: [['--', '----', '------'], ['x', 'x', 'x'], ['x', 'x', 'x']]
-    }
+def initialisation(number_of_disk : int):
+    tower_dict    = {}
+    tower_dict[0] = [[], [], []]
+    for i in range(3):
+        for j in range(0,number_of_disk) :
+            if i == 0  : #On traite le premier piquet
+                string = str((number_of_disk - j) * "-" )+ ((number_of_disk - j) * "-")
+                tower_dict[0][0].insert(0, string)
+            else : #On traite les autres piquets qui sont vides
+                tower_dict[0][i].append('x')
+    return tower_dict
 
-def last_elt(liste : list, caractere : str):
-    for i in range(1, len(liste)):
-        if liste[-i] == caractere :
+def last_elt(piquet : list, caractere = 'x'):
+    for i in range(1, len(piquet)):
+        if piquet[-i] == caractere:
             return -i
-    if liste[0] == 'x' :
+    if piquet[0] == caractere : #On traite le premier élement du piquet
         return 0
-        
 
-def deplacer(a : int, b : list, c : list):
-    try :
-        temp = b[a]
-        b[a] = 'x'
-        pos = last_elt(c, 'x')
-        c[pos] = temp
-        print(dico_coups)
-    except Exception as e :
-        print(pos, a, b, c, e)
-
-
-def hanoi(n, origine = 1, destination = 2, pivot = 3):
-    last_config = list(dico_coups.keys())[-1]
-    if n == 1 :
-        # print(f"Disk 1 from {origine} to {destination}")
-        deplacer(0, dico_coups[last_config][origine-1], dico_coups[last_config][destination-1])
-        return None
+def deplacer(disque : int, origine : int, destination : int):
+    if origine not in [1,2,3] and destination not in [1,2,3]: #Vérificaiton de l'existence de la tour
+        raise IndexError("This tower don't exist")
     else :
+        try :
+            last_config                                    = list(dico_coups.keys())[-1]
+            disk                                           = dico_coups[last_config][origine][disque]
+            dico_coups[last_config][origine][disque]       = 'x'
+            position                                       = last_elt(dico_coups[last_config][destination])
+            dico_coups[last_config][destination][position] = disk
+            print(dico_coups)
+        except IndexError :
+            print(f"disque : {disque}\norigine : {origine}\ndestination : {destination}")
 
-        hanoi(n-1, origine, pivot, destination)
-        deplacer(n-1, dico_coups[last_config][origine-1], dico_coups[last_config][destination-1])
+def hanoi(n, i=1, j=2, k=3):
+    if n==1:
+        print(f"Disque 1 de la tour {i} vers la tour {j} ")
+        deplacer(0, i-1, j-1)
+        return 
+    hanoi(n-1, i, k, j)
+    print(f"Disque {n} de la tour {i} vers la tour {j} ")
+    deplacer(-n, i-1, j-1)
+    hanoi(n-1, k, j, i)
 
-        # print(f"Disk {n} from {origine} to {destination}")       
-        hanoi(n-1, pivot, destination, origine)  
-
-if __name__ == "__main__":
+# Programme principal :
+if __name__ == "__main__":  
     n = int(input('saisir le nombre de tours : '))
-    dico_coups = initialisation()
-    print(dico_coups)
+    dico_coups = initialisation(3)
     hanoi(n)
-    print(dico_coups)
