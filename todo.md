@@ -3,4 +3,4 @@
 - [x] Faire la fonction *deplacer*
 - [ ] Faire la fonction *hanoi*
 - [ ] Ajouter le système de tours dans le dictionnaire
-- [ ] Faire l'interface graphique
+- [ ] Réparer le "bouton_2" de l'interface graphique
