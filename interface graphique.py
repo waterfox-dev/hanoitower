@@ -13,8 +13,13 @@ def tracer_disque(n):
     tracer_piquet()
     largeur_petit_disque = L = 75
     hauteur_petit_disque = H = 15
-    for i in range(1, n + 1):
-        Disque = canvas.create_rectangle(287+(i*L)/2, 511-(n-i)*H, 287-(i*L)/2, 511-(n-i+1)*H)
+    if n > 10:
+        label_1 = label_nbre_disques = tkinter.Label(Frame2, text = 'Le nombre doit être inférieur ou égal à 10')
+        label_1.pack()
+    else:
+        for i in range(1, n + 1):
+            Disque = canvas.create_rectangle(287+L/2, 511-(n-i)*H, 287-L/2, 511-(n-i+1)*H)
+            L += L/(2*i)
 #pour tracer : Ymin = 12 et Ymax = 511, Xmin = 12 et Xmax = 1111
 
 
