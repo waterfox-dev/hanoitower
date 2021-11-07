@@ -1,5 +1,6 @@
 import tkinter
 from tkinter.constants import BOTTOM, GROOVE, LEFT, RIGHT
+from big_boy import tracer_disque #J'importe la fonction venant de big boy
 
 def quitter():
     ma_fenetre.destroy()
