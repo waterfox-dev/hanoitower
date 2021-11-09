@@ -32,7 +32,8 @@ def deplacer(disque : int, origine : int, destination : int):
             position                                       = last_elt(dico_coups[last_config][destination])
             dico_coups[last_config][destination][position] = dico_coups[last_config][origine][disk]
             dico_coups[last_config][origine][disk]         = 'x'
-            print(dico_coups)
+            a = dico_coups[last_config].copy()
+            dico_coups[last_config + 1]                    = a
         except IndexError :
             print(f"disque : {disque}\norigine : {origine}\ndestination : {destination}")
 
@@ -49,5 +50,6 @@ def hanoi(n, i=1, j=2, k=3):
 # Programme principal :
 if __name__ == "__main__":  
     n = int(input('saisir le nombre de tours : '))
-    dico_coups = initialisation(3)
+    dico_coups = initialisation(3)    
     hanoi(n)
+    print(dico_coups)
