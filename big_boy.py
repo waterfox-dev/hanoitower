@@ -1,7 +1,7 @@
-def tracer_disque(n):
-    global canvas
+def tracer_disque(n, canvas, piquet_function):
     canvas.selection_clear()
-    tracer_piquet()
+    piquet_function()
+    
     largeur_petit_disque = L = 75
     hauteur_petit_disque = H = 15
 

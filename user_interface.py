@@ -1,6 +1,7 @@
 import tkinter
 from tkinter.constants import BOTTOM, GROOVE, LEFT, RIGHT
-from big_boy import tracer_disque #J'importe la fonction venant de big boy
+
+import big_boy #J'importe la fonction venant de big boy
 
 def quitter():
     ma_fenetre.destroy()
@@ -22,11 +23,8 @@ def tracer_disque(n):
         label_1 = label_nbre_disques = tkinter.Label(Frame2, text = 'Le nombre doit être inférieur ou égal à 10')
         label_1.pack()
     else:
-        for i in range(1, n + 1):
-
-            Disque = canvas.create_rectangle(287+L/2, 511-(n-i)*H, 287-L/2, 511-(n-i+1)*H)
-            print(Disque)
-            L += L/(2*i)
+        big_boy.tracer_disque(n, canvas, tracer_piquet)
+            
 
 def lancer_tracage():
     a = saisie.get()
